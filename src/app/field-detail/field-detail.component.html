@@ -1,0 +1,17 @@
+<div *ngIf="field">
+  <h2>{{field.name | uppercase}} Details</h2>
+  <div>
+    <span>id: </span>{{field.id}}
+  </div>
+  <div>
+    <label>location:
+      <input [(ngModel)]="field.location" placeholder="location">
+    </label>
+  </div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="field.name" placeholder="name">
+    </label>
+  </div>
+
+</div>

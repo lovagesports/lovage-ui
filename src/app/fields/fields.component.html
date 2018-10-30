@@ -6,20 +6,4 @@
   </li>
 </ul>
 
-<div *ngIf="selectedField">
-  <h2>{{selectedField.name | uppercase}} Details</h2>
-  <div>
-    <span>id: </span>{{selectedField.id}}
-  </div>
-  <div>
-    <label>location:
-      <input [(ngModel)]="selectedField.location" placeholder="location">
-    </label>
-  </div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="selectedField.name" placeholder="name">
-    </label>
-  </div>
-
-</div>
+<app-field-detail [field]="selectedField"></app-field-detail>

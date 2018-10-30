@@ -1,9 +1,25 @@
-<h2>{{field.name | uppercase}} Details</h2>
-<div>
-  <span>id: </span>{{field.id}}</div>
-<div>
+<h2>
+  My Fields</h2>
+<ul class="fields">
+  <li *ngFor="let field of fields" [class.selected]="field === selectedField" (click)="onSelect(field)">
+    <span class="badge">{{field.id}}</span> {{field.location}} - {{field.name}}
+  </li>
+</ul>
+
+<div *ngIf="selectedField">
+  <h2>{{selectedField.name | uppercase}} Details</h2>
   <div>
-    <label>name:
-      <input [(ngModel)]="field.name" placeholder="name">
+    <span>id: </span>{{selectedField.id}}
+  </div>
+  <div>
+    <label>location:
+      <input [(ngModel)]="selectedField.location" placeholder="location">
     </label>
   </div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="selectedField.name" placeholder="name">
+    </label>
+  </div>
+
+</div>

@@ -1,5 +1,5 @@
 <div *ngIf="field">
-  <h2>{{field.name | uppercase}} Details</h2>
+  <h2> {{field.location | uppercase}} {{field.name | uppercase}} Details</h2>
   <div>
     <span>id: </span>{{field.id}}
   </div>
@@ -13,5 +13,7 @@
       <input [(ngModel)]="field.name" placeholder="name">
     </label>
   </div>
+
+  <button (click)="goBack()">go back</button>
 
 </div>

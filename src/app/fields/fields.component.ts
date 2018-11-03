@@ -14,12 +14,6 @@ export class FieldsComponent implements OnInit {
 
   fields: Field[];
 
-  selectedField: Field;
-
-  onSelect(field: Field): void {
-    this.selectedField = field;
-  }
-
   getFields(): void {
     this.fieldService.getFields()
       .subscribe(fields => this.fields = fields);

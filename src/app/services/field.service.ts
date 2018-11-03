@@ -16,5 +16,11 @@ export class FieldService {
     return of(FIELDS);
   }
 
+  getField(id: number): Observable<Field> {
+    // TODO: send the message _after_ fetching the hero
+    this.messageService.add(`FieldService: fetched field id=${id}`);
+    return of(FIELDS.find(field => field.id === id));
+  }
+
   constructor(private messageService: MessageService) { }
 }

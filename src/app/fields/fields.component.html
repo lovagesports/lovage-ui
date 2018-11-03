@@ -1,9 +1,9 @@
 <h2>
   My Fields</h2>
 <ul class="fields">
-  <li *ngFor="let field of fields" [class.selected]="field === selectedField" (click)="onSelect(field)">
-    <span class="badge">{{field.id}}</span> {{field.location}} - {{field.name}}
+  <li *ngFor="let field of fields">
+    <a routerLink="/fields/{{field.id}}">
+      <span class="badge">{{field.id}}</span> {{field.location}} - {{field.name}}
+    </a>
   </li>
 </ul>
-
-<app-field-detail [field]="selectedField"></app-field-detail>

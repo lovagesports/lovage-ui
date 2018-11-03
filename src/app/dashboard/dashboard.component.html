@@ -1,0 +1,9 @@
+<h3>Top Fields</h3>
+<div class="grid grid-pad">
+
+  <a *ngFor="let field of fields" class="col-1-4" routerLink="/fields/{{field.id}}">
+    <div class="module field">
+      <h4>{{field.location}} - {{field.name}}</h4>
+    </div>
+  </a>
+</div>

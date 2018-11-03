@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Field } from '../domain/field';
-import { FIELDS } from '../domain/mock-fields';
 
 import { FieldService } from '../services/field.service';
 

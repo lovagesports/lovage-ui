@@ -30,6 +30,11 @@ export class FieldDetailComponent implements OnInit {
       .subscribe(field => this.field = field);
   }
 
+  save(): void {
+    this.fieldService.updateField(this.field)
+      .subscribe(() => this.goBack());
+  }
+
   goBack(): void {
     this.location.back();
   }

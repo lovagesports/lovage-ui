@@ -18,6 +18,24 @@ export class FieldsComponent implements OnInit {
       .subscribe(fields => this.fields = fields);
   }
 
+  add(location: string, name: string): void {
+    location = location.trim();
+    name = name.trim();
+
+    if (!location) { return; }
+    if (!name) { return; }
+
+    this.fieldService.addField({ location, name } as Field)
+      .subscribe(field => {
+        this.fields.push(field);
+      });
+  }
+
+  delete(field: Field): void {
+    this.fields = this.fields.filter(h => h !== field);
+    this.fieldService.deleteField(field).subscribe();
+  }
+
   constructor(private fieldService: FieldService) { }
 
   ngOnInit() {

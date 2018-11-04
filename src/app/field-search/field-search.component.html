@@ -1,0 +1,14 @@
+<div id="search-component">
+  <h4>Field Search</h4>
+
+
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+
+  <ul class="search-result">
+    <li *ngFor="let field of fields$ | async">
+      <a routerLink="/fields/{{field.id}}">
+        {{field.location}} - {{field.name}}
+      </a>
+    </li>
+  </ul>
+</div>

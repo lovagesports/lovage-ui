@@ -6,9 +6,14 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Field } from '../domain/field';
 import { MessageService } from './message.service';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class FieldService {
 
   private fieldsUrl = 'api/fields';  // URL to web api
@@ -31,9 +36,48 @@ export class FieldService {
     );
   }
 
+  /** PUT: update the field on the server */
+  updateField(field: Field): Observable<any> {
+    return this.http.put(this.fieldsUrl, field, httpOptions).pipe(
+      tap(_ => this.log(`updated field id=${field.id}`)),
+      catchError(this.handleError<any>('updateField'))
+    );
+  }
+
+  /** POST: add a new field to the server */
+  addField(field: Field): Observable<Field> {
+    return this.http.post<Field>(this.fieldsUrl, field, httpOptions).pipe(
+      tap((added: Field) => this.log(`added field w/ id=${added.id}`)),
+      catchError(this.handleError<Field>('addField'))
+    );
+  }
+
+  /** DELETE: delete the field from the server */
+  deleteField(field: Field | number): Observable<Field> {
+    const id = typeof field === 'number' ? field : field.id;
+    const url = `${this.fieldsUrl}/${id}`;
+
+    return this.http.delete<Field>(url, httpOptions).pipe(
+      tap(_ => this.log(`deleted field id=${id}`)),
+      catchError(this.handleError<Field>('deleteField'))
+    );
+  }
+
+  /* GET fields whose name contains search term */
+  searchFields(term: string): Observable<Field[]> {
+    if (!term.trim()) {
+      // if not search term, return empty field array.
+      return of([]);
+    }
+    return this.http.get<Field[]>(`${this.fieldsUrl}/?name=${term}`).pipe(
+      tap(_ => this.log(`found fields matching "${term}"`)),
+      catchError(this.handleError<Field[]>('searchFields', []))
+    );
+  }
+
   /** Log a FieldService message with the MessageService */
   private log(message: string) {
-    this.messageService.add(`FieldService: ${message}`);
+    this.messageService.add(`FieldService: ${message} `);
   }
 
   /**
@@ -49,7 +93,7 @@ export class FieldService {
       console.error(error); // log to console instead
 
       // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
+      this.log(`${operation} failed: ${error.message} `);
 
       // Let the app keep running by returning an empty result.
       return of(result as T);

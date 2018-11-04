@@ -11,6 +11,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { InMemoryDataService } from './services/in-memory-data.service';
+import { FieldSearchComponent } from './field-search/field-search.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { InMemoryDataService } from './services/in-memory-data.service';
     FieldsComponent,
     FieldDetailComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    FieldSearchComponent
   ],
   imports: [
     BrowserModule,

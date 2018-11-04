@@ -1,5 +1,7 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Field } from '../domain/field';
+import { Player } from '../domain/player';
+import { Reservation } from '../domain/reservation';
 
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
@@ -14,15 +16,41 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 18, name: 'Padin', location: 'Padin' },
       { id: 19, name: 'Teren Forbal 2', location: 'Baza Transilvania' }
     ];
-    return { fields };
+
+    const players = [
+      { id: 21, name: 'Tudor Chirila' },
+      { id: 22, name: 'Kazimir Obrenovic' },
+      { id: 23, name: 'Laur Marat' }
+    ];
+
+    const reservations = [
+      {
+        id: 31,
+        field: { id: 11, name: 'Balcescu', location: 'Balcescu' },
+        start: '2018-11-05T20:30:00+02:00',
+        end: '2018-11-05T22:00:00+02:00',
+        initiator: { id: 21, name: 'Tudor Chirila' },
+        participants: [
+          { id: 21, name: 'Tudor Chirila' },
+          { id: 22, name: 'Kazimir Obrenovic' }
+        ]
+      },
+      {
+        id: 31,
+        field: { id: 15, name: 'Baba novac', location: 'Baba novac' },
+        start: '2018-12-05T10:30:00+02:00',
+        end: '2018-12-05T12:00:00+02:00',
+        initiator: { id: 23, name: 'Laur Marat' },
+        participants: [
+          { id: 23, name: 'Laur Marat' }
+        ]
+      }
+    ];
+
+    return { fields, players, reservations };
   }
 
-  // Overrides the genId method to ensure that a hero always has an id.
-  // If the heroes array is empty,
-  // the method below returns the initial number (11).
-  // if the heroes array is not empty, the method below returns the highest
-  // hero id + 1.
-  genId(fields: Field[]): number {
-    return fields.length > 0 ? Math.max(...fields.map(field => field.id)) + 1 : 11;
+  genId<T extends Field | Player | Reservation>(myTable: T[]): number {
+    return myTable.length > 0 ? Math.max(...myTable.map(t => t.id)) + 1 : 11;
   }
 }

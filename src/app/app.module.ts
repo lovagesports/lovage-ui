@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { InMemoryDataService } from './services/in-memory-data.service';
 import { FieldSearchComponent } from './field-search/field-search.component';
+import { PlayerDetailComponent } from './player-detail/player-detail.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FieldSearchComponent } from './field-search/field-search.component';
     FieldDetailComponent,
     MessagesComponent,
     DashboardComponent,
-    FieldSearchComponent
+    FieldSearchComponent,
+    PlayerDetailComponent
   ],
   imports: [
     BrowserModule,

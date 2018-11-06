@@ -13,6 +13,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { InMemoryDataService } from './services/in-memory-data.service';
 import { FieldSearchComponent } from './field-search/field-search.component';
 import { PlayerDetailComponent } from './player-detail/player-detail.component';
+import { ReservationsComponent } from './reservations/reservations.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PlayerDetailComponent } from './player-detail/player-detail.component';
     MessagesComponent,
     DashboardComponent,
     FieldSearchComponent,
-    PlayerDetailComponent
+    PlayerDetailComponent,
+    ReservationsComponent
   ],
   imports: [
     BrowserModule,

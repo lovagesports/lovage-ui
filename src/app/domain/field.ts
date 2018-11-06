@@ -1,3 +1,4 @@
+import { Reservation } from './reservation';
 
 export class Field {
   id: number;
@@ -7,4 +8,5 @@ export class Field {
   width: number;
   recommendedPlayers: number;
   pricePerHour: number;
+  reservations: Reservation[];
 }

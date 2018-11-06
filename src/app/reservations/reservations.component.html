@@ -1,0 +1,12 @@
+<div *ngIf="field">
+  <h2> Reservations for field {{field.location}} - {{field.name}}</h2>
+
+  <ul class="fields">
+    <li *ngFor="let reservation of reservations">
+      <a routerLink="/reservation/{{reservation.id}}">
+        <span class="badge">{{reservation.id}}</span> {{reservation.start}} - {{reservation.end}}
+      </a>
+      <!-- <button class="delete" title="delete field" (click)="delete(field)">x</button> -->
+    </li>
+  </ul>
+</div>

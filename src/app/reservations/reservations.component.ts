@@ -14,17 +14,9 @@ export class ReservationsComponent implements OnInit {
 
   @Input() field: Field;
 
-  reservations: Reservation[];
-
   ngOnInit(): void {
-    this.getReservations();
-  }
-
-  getReservations(): void {
-    this.reservations = this.field.reservations;
   }
 
   constructor(
     private reservationService: ReservationService) { }
-
 }

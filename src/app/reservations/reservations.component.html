@@ -1,12 +1,15 @@
 <div *ngIf="field">
-  <h2> Reservations for field {{field.location}} - {{field.name}}</h2>
 
-  <ul class="fields">
-    <li *ngFor="let reservation of reservations">
-      <a routerLink="/reservation/{{reservation.id}}">
-        <span class="badge">{{reservation.id}}</span> {{reservation.start}} - {{reservation.end}}
+  <mat-nav-list>
+    <h2 mat-subheader>Reservations for field {{field.location}} - {{field.name}}</h2>
+
+    <mat-list-item *ngFor="let reservation of field.reservations">
+      <mat-icon mat-list-icon>date_range</mat-icon>
+      <a routerLink="/reservations/{{reservation.id}}">
+        <span>{{reservation.id}}</span>
+        <span>{{reservation.start | date:'short'}} - {{reservation.end | date:'short'}}</span>
       </a>
       <!-- <button class="delete" title="delete field" (click)="delete(field)">x</button> -->
-    </li>
-  </ul>
+    </mat-list-item>
+  </mat-nav-list>
 </div>

@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
+import { MatListModule } from '@angular/material';
+import { MatIconModule } from '@angular/material';
+
 import { AppComponent } from './app.component';
 import { FieldsComponent } from './fields/fields.component';
 import { FieldDetailComponent } from './field-detail/field-detail.component';
@@ -14,6 +17,7 @@ import { InMemoryDataService } from './services/in-memory-data.service';
 import { FieldSearchComponent } from './field-search/field-search.component';
 import { PlayerDetailComponent } from './player-detail/player-detail.component';
 import { ReservationsComponent } from './reservations/reservations.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,11 @@ import { ReservationsComponent } from './reservations/reservations.component';
     // Remove it when a real server is ready to receive requests.
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
-    )
+    ),
+
+    BrowserAnimationsModule,
+    MatListModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

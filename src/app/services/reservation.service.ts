@@ -19,9 +19,18 @@ export class ReservationService {
 
   private reservationsUrl = 'api/reservations';  // URL to web api
 
-  /** GET reservations from the server */
-  getReservations(fieldId: number): Observable<Reservation[]> {
+  /** GET reservations of field */
+  getReservationsByField(fieldId: number): Observable<Reservation[]> {
     return this.http.get<Reservation[]>(`${this.reservationsUrl}/?field.id=${fieldId}`)
+      .pipe(
+        tap(_ => this.log('fetched reservations')),
+        catchError(this.handleError('getReservations', []))
+      );
+  }
+
+  /** GET reservations between dates */
+  getReservationsBetweenDates(start: Date, end: Date): Observable<Reservation[]> {
+    return this.http.get<Reservation[]>(`${this.reservationsUrl}/?start=${start}&&end=${end}`)
       .pipe(
         tap(_ => this.log('fetched reservations')),
         catchError(this.handleError('getReservations', []))

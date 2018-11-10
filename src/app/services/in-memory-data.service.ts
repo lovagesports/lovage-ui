@@ -17,6 +17,17 @@ export class InMemoryDataService implements InMemoryDbService {
               { id: 21, name: 'Tudor Chirila' },
               { id: 22, name: 'Kazimir Obrenovic' }
             ]
+          },
+          {
+            id: 33,
+            start: '2018-11-10T19:30:00+02:00',
+            end: '2018-11-10T21:00:00+02:00',
+            initiator: { id: 22, name: 'Kazimir Obrenovic' },
+            participants: [
+              { id: 21, name: 'Tudor Chirila' },
+              { id: 22, name: 'Kazimir Obrenovic' },
+              { id: 23, name: 'Laur Marat' }
+            ]
           }]
       },
       { id: 12, name: 'Teren 1', location: 'Turzii' },
@@ -25,7 +36,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 15, name: 'Baba novac', location: 'Baba novac', reservations: [
           {
-            id: 31,
+            id: 32,
             start: '2018-12-05T10:30:00+02:00',
             end: '2018-12-05T12:00:00+02:00',
             initiator: { id: 23, name: 'Laur Marat' },
@@ -46,7 +57,40 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 23, name: 'Laur Marat' }
     ];
 
-    return { fields, players };
+    const reservations = [
+      {
+        id: 31,
+        start: '2018-11-05T20:30:00+02:00',
+        end: '2018-11-05T22:00:00+02:00',
+        initiator: { id: 21, name: 'Tudor Chirila' },
+        participants: [
+          { id: 21, name: 'Tudor Chirila' },
+          { id: 22, name: 'Kazimir Obrenovic' }
+        ]
+      },
+      {
+        id: 32,
+        start: '2018-12-05T10:30:00+02:00',
+        end: '2018-12-05T12:00:00+02:00',
+        initiator: { id: 23, name: 'Laur Marat' },
+        participants: [
+          { id: 23, name: 'Laur Marat' }
+        ]
+      },
+      {
+        id: 33,
+        start: '2018-11-10T19:30:00+02:00',
+        end: '2018-11-10T21:00:00+02:00',
+        initiator: { id: 22, name: 'Kazimir Obrenovic' },
+        participants: [
+          { id: 21, name: 'Tudor Chirila' },
+          { id: 22, name: 'Kazimir Obrenovic' },
+          { id: 23, name: 'Laur Marat' }
+        ]
+      }
+    ];
+
+    return { fields, players, reservations };
   }
 
   genId<T extends Field | Player | Reservation>(myTable: T[]): number {

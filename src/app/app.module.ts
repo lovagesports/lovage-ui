@@ -13,11 +13,12 @@ import { FieldDetailComponent } from './field-detail/field-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { InMemoryDataService } from './services/in-memory-data.service';
+// import { InMemoryDataService } from './services/in-memory-data.service';
 import { FieldSearchComponent } from './field-search/field-search.component';
 import { PlayerDetailComponent } from './player-detail/player-detail.component';
 import { ReservationsComponent } from './reservations/reservations.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReservationAvailabitityComponent } from './reservation-availabitity/reservation-availabitity.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DashboardComponent,
     FieldSearchComponent,
     PlayerDetailComponent,
-    ReservationsComponent
+    ReservationsComponent,
+    ReservationAvailabitityComponent
   ],
   imports: [
     BrowserModule,
@@ -40,9 +42,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),
+    // HttpClientInMemoryWebApiModule.forRoot(
+    //   InMemoryDataService, { dataEncapsulation: false }
+    // ),
 
     BrowserAnimationsModule,
     MatListModule,

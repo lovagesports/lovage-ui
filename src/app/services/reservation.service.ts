@@ -17,7 +17,7 @@ const httpOptions = {
 
 export class ReservationService {
 
-  private reservationsUrl = 'api/reservations';  // URL to web api
+  private reservationsUrl = 'http://localhost:8080/api/reservations';  // URL to web api
 
   /** GET reservations of field */
   getReservationsByField(fieldId: number): Observable<Reservation[]> {
@@ -30,7 +30,7 @@ export class ReservationService {
 
   /** GET reservations between dates */
   getReservationsBetweenDates(start: Date, end: Date): Observable<Reservation[]> {
-    return this.http.get<Reservation[]>(`${this.reservationsUrl}/?start=${start}&&end=${end}`)
+    return this.http.get<Reservation[]>(`${this.reservationsUrl}/?start=${start}&end=${end}`)
       .pipe(
         tap(_ => this.log('fetched reservations')),
         catchError(this.handleError('getReservations', []))

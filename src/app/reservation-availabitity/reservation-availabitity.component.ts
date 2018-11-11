@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Reservation } from '../domain/reservation';
+import { Field } from '../domain/field';
 import { ReservationService } from '../services/reservation.service';
 
 @Component({
@@ -10,14 +10,14 @@ import { ReservationService } from '../services/reservation.service';
 })
 export class ReservationAvailabitityComponent implements OnInit {
 
-  reservations: Reservation[];
+  fields: Field[];
 
   constructor(private reservationService: ReservationService) { }
 
   checkAvailability(start: Date, end: Date): void {
 
-    this.reservationService.getReservationsBetweenDates(start, end)
-      .subscribe(reservations => this.reservations = reservations);
+    this.reservationService.getFieldsAvailableBetweenDates(start, end)
+      .subscribe(fields => this.fields = fields);
   }
 
   ngOnInit() {

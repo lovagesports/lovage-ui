@@ -5,6 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Reservation } from '../domain/reservation';
+import { Field } from '../domain/field';
+
 import { MessageService } from './message.service';
 
 const httpOptions = {
@@ -18,6 +20,7 @@ const httpOptions = {
 export class ReservationService {
 
   private reservationsUrl = 'http://localhost:8080/api/reservations';  // URL to web api
+  private fieldsUrl = 'http://localhost:8080/api/fields';  // URL to web api
 
   /** GET reservations of field */
   getReservationsByField(fieldId: number): Observable<Reservation[]> {
@@ -33,7 +36,16 @@ export class ReservationService {
     return this.http.get<Reservation[]>(`${this.reservationsUrl}/?start=${start}&end=${end}`)
       .pipe(
         tap(_ => this.log('fetched reservations')),
-        catchError(this.handleError('getReservations', []))
+        catchError(this.handleError('getReservationsBetweenDates', []))
+      );
+  }
+
+  /** GET fields available between dates */
+  getFieldsAvailableBetweenDates(start: Date, end: Date): Observable<Field[]> {
+    return this.http.get<Field[]>(`${this.fieldsUrl}/available?start=${start}&end=${end}`)
+      .pipe(
+        tap(_ => this.log('fetched fields')),
+        catchError(this.handleError('getFieldsAvailableBetweenDates', []))
       );
   }
 

@@ -16,7 +16,7 @@ const httpOptions = {
 
 export class PlayerService {
 
-  private playersUrl = 'api/players';  // URL to web api
+  private playersUrl = 'http://localhost:8080/api/players';  // URL to web api
 
   /** GET player by id. Will 404 if id not found */
   getPlayer(id: number): Observable<Player> {

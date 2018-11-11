@@ -16,7 +16,7 @@ const httpOptions = {
 
 export class FieldService {
 
-  private fieldsUrl = 'api/fields';  // URL to web api
+  private fieldsUrl = 'http://localhost:8080/api/fields';  // URL to web api
 
   /** GET fields from the server */
   getFields(): Observable<Field[]> {

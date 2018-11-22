@@ -1,22 +1,27 @@
 <div id="search-component">
-  <h4>Check reservation availability</h4>
+	<h4>Check reservation availability</h4>
 
+	<mat-form-field> <input matInput
+		[matDatepicker]="startDate" placeholder="Start date"
+		[(ngModel)]="startDatee"> <mat-datepicker-toggle matSuffix
+		[for]="startDate"></mat-datepicker-toggle> <mat-datepicker #startDate></mat-datepicker>
+	</mat-form-field>
 
-  <input #startDate id="start-date" />
-  <input #endDate id="end-date" />
-  <button (click)="checkAvailability(startDate.value, endDate.value)">Check</button>
+	<mat-form-field> <input matInput
+		[matDatepicker]="endDate" placeholder="End date" [(ngModel)]="endDatee"> <mat-datepicker-toggle
+		matSuffix [for]="endDate"></mat-datepicker-toggle> <mat-datepicker
+		#endDate></mat-datepicker> </mat-form-field>
 
-  <div *ngIf="fields">
-    <mat-nav-list>
-      <h2 mat-subheader>Fields available between :</h2>
+	<button (click)="checkAvailability()">Check</button>
 
-      <mat-list-item *ngFor="let field of fields">
-        <mat-icon mat-list-icon>date_range</mat-icon>
-        <a routerLink="/fields/{{field.id}}">
-          <span>{{field.id}}</span>
-          <span>{{field.name | uppercase}} - {{field.location | uppercase}}</span>
-        </a>
-      </mat-list-item>
-    </mat-nav-list>
-  </div>
+	<div *ngIf="fields">
+		<mat-nav-list>
+		<h2 mat-subheader>Fields available between :</h2>
+
+		<mat-list-item *ngFor="let field of fields"> <mat-icon
+			mat-list-icon>date_range</mat-icon> <a
+			routerLink="/fields/{{field.id}}"> <span>{{field.id}}</span> <span>{{field.name
+				| uppercase}} - {{field.location | uppercase}}</span>
+		</a> </mat-list-item> </mat-nav-list>
+	</div>
 </div>

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { DatePipe } from '@angular/common';
 
 import { Reservation } from '../domain/reservation';
 import { Field } from '../domain/field';
@@ -33,7 +34,11 @@ export class ReservationService {
 
   /** GET reservations between dates */
   getReservationsBetweenDates(start: Date, end: Date): Observable<Reservation[]> {
-    return this.http.get<Reservation[]>(`${this.reservationsUrl}/?start=${start}&end=${end}`)
+  
+  	var sDate = this.datePipe.transform(start, 'yyyy-MM-dd');
+	var eDate = this.datePipe.transform(end, 'yyyy-MM-dd');
+	
+    return this.http.get<Reservation[]>(`${this.reservationsUrl}/?start=${sDate}&end=${eDate}`)
       .pipe(
         tap(_ => this.log('fetched reservations')),
         catchError(this.handleError('getReservationsBetweenDates', []))
@@ -76,5 +81,6 @@ export class ReservationService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    private datePipe: DatePipe) { }
 }

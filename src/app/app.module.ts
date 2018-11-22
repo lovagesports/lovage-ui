@@ -1,11 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { DatePipe } from '@angular/common';
 
-import { MatListModule } from '@angular/material';
-import { MatIconModule } from '@angular/material';
+import { MatInputModule, MatListModule, MatIconModule, MatNativeDateModule } from '@angular/material';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { AppComponent } from './app.component';
 import { FieldsComponent } from './fields/fields.component';
@@ -35,6 +37,7 @@ import { ReservationAvailabitityComponent } from './reservation-availabitity/res
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     HttpClientModule,
@@ -48,9 +51,14 @@ import { ReservationAvailabitityComponent } from './reservation-availabitity/res
 
     BrowserAnimationsModule,
     MatListModule,
-    MatIconModule
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
-  providers: [],
+  exports: [MatDatepickerModule],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

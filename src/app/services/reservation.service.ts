@@ -34,11 +34,8 @@ export class ReservationService {
 
   /** GET reservations between dates */
   getReservationsBetweenDates(start: Date, end: Date): Observable<Reservation[]> {
-  
-  	var sDate = this.datePipe.transform(start, 'yyyy-MM-dd');
-	var eDate = this.datePipe.transform(end, 'yyyy-MM-dd');
-	
-    return this.http.get<Reservation[]>(`${this.reservationsUrl}/?start=${sDate}&end=${eDate}`)
+
+	  return this.http.get<Reservation[]>(`${this.reservationsUrl}/?start=${start}&end=${end}`)
       .pipe(
         tap(_ => this.log('fetched reservations')),
         catchError(this.handleError('getReservationsBetweenDates', []))
@@ -46,8 +43,11 @@ export class ReservationService {
   }
 
   /** GET fields available between dates */
-  getFieldsAvailableBetweenDates(start: Date, end: Date): Observable<Field[]> {
-    return this.http.get<Field[]>(`${this.fieldsUrl}/available?start=${start}&end=${end}`)
+  getFieldsAvailableBetweenDates(date: Date, start: string, duration: number): Observable<Field[]> {
+
+	  var stringDate = this.datePipe.transform(date, 'yyyy-MM-dd');
+
+    return this.http.get<Field[]>(`${this.fieldsUrl}/available?date=${stringDate}&start=${start}&duration=${duration}`)
       .pipe(
         tap(_ => this.log('fetched fields')),
         catchError(this.handleError('getFieldsAvailableBetweenDates', []))
@@ -60,11 +60,13 @@ export class ReservationService {
   }
 
   /**
- * Handle Http operation that failed.
- * Let the app continue.
- * @param operation - name of the operation that failed
- * @param result - optional value to return as the observable result
- */
+	 * Handle Http operation that failed. Let the app continue.
+	 * 
+	 * @param operation -
+	 *            name of the operation that failed
+	 * @param result -
+	 *            optional value to return as the observable result
+	 */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 

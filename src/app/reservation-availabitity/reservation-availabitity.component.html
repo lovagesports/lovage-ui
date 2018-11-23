@@ -2,15 +2,15 @@
 	<h4>Check reservation availability</h4>
 
 	<mat-form-field> <input matInput
-		[matDatepicker]="startDate" placeholder="Start date"
-		[(ngModel)]="startDatee"> <mat-datepicker-toggle matSuffix
-		[for]="startDate"></mat-datepicker-toggle> <mat-datepicker #startDate></mat-datepicker>
-	</mat-form-field>
+		[matDatepicker]="adate" placeholder="Date" [(ngModel)]="date">
+	<mat-datepicker-toggle matSuffix [for]="adate"></mat-datepicker-toggle>
+	<mat-datepicker #adate></mat-datepicker> </mat-form-field>
 
-	<mat-form-field> <input matInput
-		[matDatepicker]="endDate" placeholder="End date" [(ngModel)]="endDatee"> <mat-datepicker-toggle
-		matSuffix [for]="endDate"></mat-datepicker-toggle> <mat-datepicker
-		#endDate></mat-datepicker> </mat-form-field>
+	<mat-form-field> <input matInput type="time"
+		placeholder="Start time" [(ngModel)]="start"> </mat-form-field>
+
+	<mat-form-field> <input matInput type="number"
+		placeholder="Duration" [(ngModel)]="duration"> </mat-form-field>
 
 	<button (click)="checkAvailability()">Check</button>
 

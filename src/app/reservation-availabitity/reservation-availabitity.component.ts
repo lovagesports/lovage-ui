@@ -4,26 +4,27 @@ import { FormControl } from '@angular/forms';
 import { Field } from '../domain/field';
 import { ReservationService } from '../services/reservation.service';
 
-@Component({
-  selector: 'app-reservation-availabitity',
-  templateUrl: './reservation-availabitity.component.html',
-  styleUrls: ['./reservation-availabitity.component.css']
-})
+@Component( {
+    selector: 'app-reservation-availabitity',
+    templateUrl: './reservation-availabitity.component.html',
+    styleUrls: ['./reservation-availabitity.component.css']
+} )
 export class ReservationAvailabitityComponent implements OnInit {
 
-  fields: Field[];
-	 startDatee = new Date();
-	 endDatee = new Date();
-	 
-  constructor(private reservationService: ReservationService) { }
+    fields: Field[];
+    date: Date = new Date();
+    start: string = new Date().toTimeString();
+    duration: number = 60;
 
-  checkAvailability(): void {
+    constructor( private reservationService: ReservationService ) { }
 
-	this.reservationService.getFieldsAvailableBetweenDates(this.startDatee, this.endDatee)
-      .subscribe(fields => this.fields = fields);
-  }
+    checkAvailability(): void {
 
-  ngOnInit() {
-  }
+        this.reservationService.getFieldsAvailableBetweenDates( this.date, this.start, this.duration )
+            .subscribe( fields => this.fields = fields );
+    }
+
+    ngOnInit() {
+    }
 
 }

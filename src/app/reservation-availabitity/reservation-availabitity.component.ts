@@ -13,7 +13,7 @@ export class ReservationAvailabitityComponent implements OnInit {
 
     fields: Field[];
     date: Date = new Date();
-    start: string = new Date().toTimeString();
+    start: string = new Date().toLocaleTimeString();
     duration: number = 60;
 
     constructor( private reservationService: ReservationService ) { }

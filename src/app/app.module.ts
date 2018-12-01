@@ -21,6 +21,7 @@ import { PlayerDetailComponent } from './player-detail/player-detail.component';
 import { ReservationsComponent } from './reservations/reservations.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReservationAvailabitityComponent } from './reservation-availabitity/reservation-availabitity.component';
+import { FieldBookComponent } from './field-book/field-book.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ReservationAvailabitityComponent } from './reservation-availabitity/res
     FieldSearchComponent,
     PlayerDetailComponent,
     ReservationsComponent,
-    ReservationAvailabitityComponent
+    ReservationAvailabitityComponent,
+    FieldBookComponent
   ],
   imports: [
     BrowserModule,

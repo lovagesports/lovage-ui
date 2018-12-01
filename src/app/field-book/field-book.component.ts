@@ -8,40 +8,30 @@ import { FieldService } from '../services/field.service';
 import { ReservationService } from '../services/reservation.service';
 
 @Component( {
-    selector: 'app-field-detail',
-    templateUrl: './field-detail.component.html',
-    styleUrls: ['./field-detail.component.css']
+    selector: 'app-field-book',
+    templateUrl: './field-book.component.html',
+    styleUrls: ['./field-book.component.css']
 } )
-export class FieldDetailComponent implements OnInit {
+export class FieldBookComponent implements OnInit {
 
     @Input() field: Field;
+    @Input() date: Date;
+    @Input() startTime: string;
+    @Input() duration: number;
 
-    constructor(
-        private route: ActivatedRoute,
-        private fieldService: FieldService,
+    constructor( private fieldService: FieldService,
         private reservationService: ReservationService,
-        private location: Location
-    ) { }
+        private location: Location ) { }
 
-    ngOnInit(): void {
-        this.getField();
-    }
-
-    getField(): void {
-        const id = +this.route.snapshot.paramMap.get( 'id' );
-        this.fieldService.getField( id )
-            .subscribe( field => this.field = field );
-    }
-
-    save(): void {
-        this.fieldService.updateField( this.field )
-            .subscribe(() => this.goBack() );
+    ngOnInit() {
     }
 
     book(): void {
         var reservation = new Reservation();
-        reservation.duration = 60;
+        reservation.duration = this.duration;
         reservation.field = this.field;
+        reservation.start = this.date;
+        reservation.time = this.startTime;
 
         this.reservationService.book( reservation )
             .subscribe(() => this.goBack() );
@@ -50,4 +40,5 @@ export class FieldDetailComponent implements OnInit {
     goBack(): void {
         this.location.back();
     }
+
 }

@@ -54,10 +54,10 @@ export class ReservationService {
             );
     }
 
-    /** Book this field */
-    bookField( field: Field ): Observable<Reservation> {
+    /** Make a booking with this reservation information*/
+    book( reservation: Reservation ): Observable<Reservation> {
 
-        return this.http.post<Reservation>( `${this.reservationsUrl}/book`, field, httpOptions ).pipe(
+        return this.http.post<Reservation>( `${this.reservationsUrl}/book`, reservation, httpOptions ).pipe(
             tap(( added: Reservation ) => this.log( `added reservation id=${added.id}` ) ),
             catchError( this.handleError<any>( 'bookField' ) )
         );

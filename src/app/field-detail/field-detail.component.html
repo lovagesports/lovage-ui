@@ -1,26 +1,29 @@
 <div *ngIf="field">
-  <h2> {{field.location | uppercase}} {{field.name | uppercase}} Details</h2>
-  <div>
-    <span>id: </span>{{field.id}}
-  </div>
-  <div>
-    <label>location:
-      <input [(ngModel)]="field.location" placeholder="location">
-    </label>
-  </div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="field.name" placeholder="name">
-    </label>
-  </div>
-  <div>
-    <mat-action-list>
-    <button mat-list-item (click)="book()"> Book it! </button>
-      <button mat-list-item (click)="save()"> Save </button>
-      <button mat-list-item (click)="goBack()"> Go back </button>
-    </mat-action-list>
-  </div>
-  
-  <app-reservations [field]="field"></app-reservations>
+	<h2>{{field.location | uppercase}} {{field.name | uppercase}}
+		Details</h2>
+	<div>
+		<span>id: </span>{{field.id}}
+	</div>
+	<div>
+		<label>location: <input [(ngModel)]="field.location"
+			placeholder="location">
+		</label>
+	</div>
+	<div>
+		<label>name: <input [(ngModel)]="field.name"
+			placeholder="name">
+		</label>
+	</div>
+	<div>
+		<mat-action-list>
+		<button mat-list-item>
+			<a routerLink="/field-book"> Book it! </a>
+		</button>
+		<button mat-list-item (click)="save()">Save</button>
+		<button mat-list-item (click)="goBack()">Go back</button>
+		</mat-action-list>
+	</div>
+
+	<app-reservations [field]="field"></app-reservations>
 
 </div>

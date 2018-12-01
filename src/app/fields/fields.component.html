@@ -16,6 +16,9 @@
     <a routerLink="/fields/{{field.id}}">
       <span class="badge">{{field.id}}</span> {{field.location}} - {{field.name}}
     </a>
+    <button mat-list-item>
+      <a routerLink="/field-book"> Book it! </a>
+    </button>
     <button class="delete" title="delete field" (click)="delete(field)">x</button>
   </li>
 </ul>

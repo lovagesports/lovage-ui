@@ -18,9 +18,9 @@ const routes: Routes = [
     { path: 'field-book', component: FieldBookComponent }
 ];
 
-@NgModule( {
-    imports: [RouterModule.forRoot( routes )],
+@NgModule({
+    imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
-} )
+})
 
 export class AppRoutingModule { }

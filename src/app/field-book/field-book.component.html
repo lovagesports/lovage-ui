@@ -1,43 +1,42 @@
 <div *ngIf="field">
-	<h2>Book {{field.location | uppercase}} {{field.name | uppercase}}</h2>
-	<div>
-		<span>id: </span>{{field.id}}
-	</div>
-	<div>
-		<label>location: <input [(ngModel)]="field.location"
-			placeholder="location">
-		</label>
-	</div>
-	<div>
-		<label>name: <input [(ngModel)]="field.name"
-			placeholder="name">
-		</label>
-	</div>
+  <h2>Book {{field.location | uppercase}} {{field.name | uppercase}}</h2>
+  <div>
+    <span>id: </span>{{field.id}}
+  </div>
+  <div>
+    <label>location:
+      <input [(ngModel)]="field.location" placeholder="location">
+    </label>
+  </div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="field.name" placeholder="name">
+    </label>
+  </div>
 
-	<div>
-		<mat-form-field> <input matInput
-			[matDatepicker]="adate" placeholder="Date" [(ngModel)]="date">
-		<mat-datepicker-toggle matSuffix [for]="adate"></mat-datepicker-toggle>
-		<mat-datepicker #adate></mat-datepicker> </mat-form-field>
-	</div>
+  <div>
+    <mat-form-field>
+      <input matInput [matDatepicker]="adate" placeholder="Date" [(ngModel)]="date">
+      <mat-datepicker-toggle matSuffix [for]="adate"></mat-datepicker-toggle>
+      <mat-datepicker #adate></mat-datepicker>
+    </mat-form-field>
+  </div>
 
-	<div>
-		<mat-form-field> <input matInput type="time"
-			placeholder="Start time" [(ngModel)]="startTime"> </mat-form-field>
-	</div>
+  <div>
+    <mat-form-field>
+      <input matInput type="time" placeholder="Start time" [(ngModel)]="startTime"> </mat-form-field>
+  </div>
 
-	<div>
-		<mat-form-field> <input matInput type="number"
-			placeholder="Duration" [(ngModel)]="duration"> </mat-form-field>
-	</div>
-	
-	<div>
-		<mat-action-list>
-		<button mat-list-item (click)="book()">Book it!</button>
-		<button mat-list-item (click)="goBack()">Go back</button>
-		</mat-action-list>
-	</div>
+  <div>
+    <mat-form-field>
+      <input matInput type="number" placeholder="Duration" [(ngModel)]="duration"> </mat-form-field>
+  </div>
 
-	<app-reservations [field]="field"></app-reservations>
+  <div>
+    <mat-action-list>
+      <button mat-list-item (click)="book()">Book it!</button>
+      <button mat-list-item (click)="goBack()">Go back</button>
+    </mat-action-list>
+  </div>
 
 </div>

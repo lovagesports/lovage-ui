@@ -1,27 +1,35 @@
 <div id="search-component">
-	<h4>Check reservation availability</h4>
+  <h4>Check reservation availability</h4>
 
-	<mat-form-field> <input matInput
-		[matDatepicker]="adate" placeholder="Date" [(ngModel)]="date">
-	<mat-datepicker-toggle matSuffix [for]="adate"></mat-datepicker-toggle>
-	<mat-datepicker #adate></mat-datepicker> </mat-form-field>
+  <mat-form-field>
+    <input matInput [matDatepicker]="adate" placeholder="Date" [(ngModel)]="date">
+    <mat-datepicker-toggle matSuffix [for]="adate"></mat-datepicker-toggle>
+    <mat-datepicker #adate></mat-datepicker>
+  </mat-form-field>
 
-	<mat-form-field> <input matInput type="time"
-		placeholder="Start time" [(ngModel)]="start"> </mat-form-field>
+  <mat-form-field>
+    <input matInput type="time" placeholder="Start time" [(ngModel)]="start"> </mat-form-field>
 
-	<mat-form-field> <input matInput type="number"
-		placeholder="Duration" [(ngModel)]="duration"> </mat-form-field>
+  <mat-form-field>
+    <input matInput type="number" placeholder="Duration" [(ngModel)]="duration"> </mat-form-field>
 
-	<button (click)="checkAvailability()">Check availability</button>
+  <button (click)="checkAvailability()">Check availability</button>
 
-	<div *ngIf="fields">
-		<mat-nav-list>
-		<h2 mat-subheader>Fields available between :</h2>
+  <div *ngIf="fields">
+    <mat-nav-list>
+      <h2 mat-subheader>Fields available between :</h2>
 
-		<mat-list-item *ngFor="let field of fields"> <mat-icon
-			mat-list-icon>date_range</mat-icon> <a
-			routerLink="/fields/{{field.id}}"> <span>{{field.id}}</span> <span>
-				{{field.name | uppercase}} - {{field.location | uppercase}}</span>
-		</a> </mat-list-item> </mat-nav-list>
-	</div>
+      <mat-list-item *ngFor="let field of fields">
+        <mat-icon mat-list-icon>date_range</mat-icon>
+        <a routerLink="/fields/{{field.id}}">
+          <span>{{field.id}}</span>
+          <span>
+            {{field.name | uppercase}} - {{field.location | uppercase}}</span>
+        </a>
+        <a routerLink="/field-book">
+          <span>Book it!</span>
+        </a>
+      </mat-list-item>
+    </mat-nav-list>
+  </div>
 </div>

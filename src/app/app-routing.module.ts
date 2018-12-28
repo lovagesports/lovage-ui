@@ -7,15 +7,18 @@ import { FieldDetailComponent } from './field-detail/field-detail.component';
 import { PlayerDetailComponent } from './player-detail/player-detail.component';
 import { ReservationAvailabitityComponent } from './reservation-availabitity/reservation-availabitity.component';
 import { FieldBookComponent } from './field-book/field-book.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-    { path: 'dashboard', component: DashboardComponent },
-    { path: 'fields/:id', component: FieldDetailComponent },
-    { path: 'fields', component: FieldsComponent },
-    { path: 'players/:id', component: PlayerDetailComponent },
-    { path: 'reservations', component: ReservationAvailabitityComponent },
-    { path: 'field-book', component: FieldBookComponent }
+    { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
+    { path: 'login', component: LoginComponent },
+    { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+    { path: 'fields/:id', component: FieldDetailComponent, canActivate: [AuthGuard] },
+    { path: 'fields', component: FieldsComponent, canActivate: [AuthGuard] },
+    { path: 'players/:id', component: PlayerDetailComponent, canActivate: [AuthGuard] },
+    { path: 'reservations', component: ReservationAvailabitityComponent, canActivate: [AuthGuard] },
+    { path: 'field-book', component: FieldBookComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
